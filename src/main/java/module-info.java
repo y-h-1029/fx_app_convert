@@ -6,6 +6,7 @@ module config_converter.config_conv_app {
 	requires jdk.jfr;
 	requires lombok;
 	requires poi;
+    requires javafx.graphics;
 
     opens config_converter.config_conv_app to javafx.fxml;
     exports config_converter.config_conv_app;

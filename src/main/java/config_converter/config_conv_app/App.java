@@ -15,6 +15,9 @@ public class App extends Application {
 
     private static Scene scene;
 
+    /**
+     * start by fxapp
+     */
     @SuppressWarnings("exports")
 	@Override
     public void start(Stage stage) throws IOException {
@@ -23,15 +26,30 @@ public class App extends Application {
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    /**
+     * 画面オブジェクトセット
+     * @param fxml
+     * @throws IOException
+     */
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * FXML読み込み
+     * @param fxml
+     * @return
+     * @throws IOException
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+     * 実行
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
