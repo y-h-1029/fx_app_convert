@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 
 import com.gh.mygreen.xlsmapper.XlsMapper;
 
+import config_converter.config_conv_app.Dialog;
 import config_converter.config_conv_app.conv.bean.Configuration;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * Excelファイルリーダクラス
@@ -14,17 +16,18 @@ import config_converter.config_conv_app.conv.bean.Configuration;
  */
 public class ExcelFileReader {
 
-	public static Configuration loadConfig(String path) {
-
+    /**
+     * xlsxのファイル読み込み
+     * @param path
+     * @return
+     */
+	public static Configuration readXlsx(String path) {
 		XlsMapper mapper = new XlsMapper();
 		Configuration config = null;
 		try(FileInputStream fis = new FileInputStream(new File(path))) {
 			config = mapper.load(fis, Configuration.class);
-			if (config == null) {
-				System.out.println("xlsx read error");
-			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Dialog.openDialog(AlertType.ERROR, new String[]{"エラー", "ファイル読み込みに失敗しました"}, e);
 		}
 		return config;
 	}
